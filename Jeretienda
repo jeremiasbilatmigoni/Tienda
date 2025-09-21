@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Pedidos por WhatsApp</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f9f9f9;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .pedido-box {
+      background: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      width: 300px;
+    }
+    input, textarea, button {
+      width: 100%;
+      margin: 8px 0;
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+    button {
+      background: #25D366;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #20b955;
+    }
+  </style>
+</head>
+<body>
+  <div class="pedido-box">
+    <h2>Haz tu pedido</h2>
+    <form id="formPedido">
+      <input type="text" id="nombre" placeholder="Tu nombre" required>
+      <input type="text" id="producto" placeholder="Producto" required>
+      <textarea id="direccion" placeholder="Dirección" required></textarea>
+      <button type="submit">Enviar por WhatsApp</button>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById("formPedido").addEventListener("submit", function(e) {
+      e.preventDefault();
+      let nombre = document.getElementById("nombre").value;
+      let producto = document.getElementById("producto").value;
+      let direccion = document.getElementById("direccion").value;
+
+      let mensaje = `¡Nuevo pedido!%0A👤 Nombre: ${nombre}%0A📦 Producto: ${producto}%0A📍 Dirección: ${direccion}`;
+      
+      // Cambiá el número al tuyo en formato internacional, ej: +549... para Argentina
+      let numero = "549XXXXXXXXX"; 
+      window.open(`https://wa.me/${numero}?text=${mensaje}`, "_blank");
+    });
+  </script>
+</body>
+</html>
